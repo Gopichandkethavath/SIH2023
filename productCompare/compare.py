@@ -1,4 +1,5 @@
 import pandas as pd
+from .products_graph import save_graph
 from .flipkart import (
     scrape_flipkart_products,
 )  # Import the Flipkart function from flipkart.py
@@ -53,7 +54,7 @@ def get_product_data(search_query):
     amazon_df = scrape_amazon_products(search_query)
     combined_df = combine_data(flipkart_df, amazon_df)
     combined_dict = combined_df.to_dict(orient="records")
-
+    save_graph(combined_dict)
     return combined_dict
 
 
